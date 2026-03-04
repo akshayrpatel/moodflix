@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&family=Space+Mono&display=swap");
+@import "tailwindcss";
+@import "animate.css";
+
+@theme {
+  /* colors */
+  --color-brand-red: #e50914;
+  --color-brand-dark: #b20710;
+
+  /* Netflix brand black */
+  --color-background: #141414;
+
+  /* Secondary surface colors for cards/inputs */
+  --color-surface: #1f1f1f;
+  --color-surface-hover: #2a2a2a;
+
+  /* fonts */
+  --font-netflix: "Inter", sans-serif;
+  --font-netflix-logo: "Bebas Neue", sans-serif;
+  --font-mono: "Space Mono", monospace;
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+}
+
+body {
+  background-color: var(--color-netflix-black);
+  color: white;
+  font-family: var(--font-netflix);
+}
+
+html {
+  /* Prevents the page from shifting horizontally */
+  overflow-x: hidden;
+  /* Makes height transitions smoother on mobile */
+  height: -webkit-fill-available;
+  /* This ensures the gutter for the scrollbar is always there */
+  scrollbar-gutter: stable;
+}
