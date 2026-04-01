@@ -1,0 +1,49 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.settings/
+.project
+.classpath
+.factorypath
+
+# Build
+build/
+out/
+bin/
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+
+# Spring
+application-local.yml
+application-local.properties
+
+# Claude
+CLAUDE.md
+
+# User scratch
+/learning
+/planning
+/trash
+/backup
+files.txt
+structure.txt
+HELP.md

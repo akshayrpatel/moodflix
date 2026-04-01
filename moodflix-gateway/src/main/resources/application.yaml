@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: moodflix-gateway
+
+  # --- Database (R2DBC — non-blocking reactive driver) ---
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/moodflix_dev
+    username: postgres
+    password: akshay24
+
+  # --- Redis (session context storage for ContextualRiskFilter) ---
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  # --- Gateway Routes (proxied to AI engine) ---
+  # Only routes that are NOT handled by local @RestControllers.
+  # Local controllers (/auth, /onboarding, /profile) bypass the
+  # gateway filter chain entirely — see learning/filter-chain.md.
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+          - id: search
+            uri: http://localhost:8001
+            predicates:
+              - Path=/api/search/**
+          - id: discover
+            uri: http://localhost:8001
+            predicates:
+              - Path=/api/discover
+
+ai:
+  engine:
+    url: http://localhost:8001
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+
+# --- JWT ---
+jwt:
+  secret: 'u&P9#zL2m!K5vR@8qXn*jW4b7Yf$6tS1'
