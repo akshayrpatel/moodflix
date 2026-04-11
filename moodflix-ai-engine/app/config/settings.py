@@ -30,6 +30,8 @@ class Settings(BaseSettings):
 	ollama_base_url: str
 	ollama_gemma2_model_name: str
 	ollama_gemma3_model_name: str
+	ollama_phi3_mini_model_name: str
+	ollama_qwen25_model_name: str
 
 	# Mistral
 	mistral_api_key: str

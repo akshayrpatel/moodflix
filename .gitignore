@@ -1,0 +1,35 @@
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.*
+
+# OS
+Thumbs.db
+ehthumbs.db
+
+# Temp
+*.tmp
+*.temp
+
+# User
+vault/
+
+# ETL pipeline artifacts
+moodflix-etl-pipeline/store/
+moodflix-etl-pipeline/db/
+moodflix-etl-pipeline/logs/

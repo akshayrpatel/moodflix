@@ -14,18 +14,11 @@ wheels/
 .env*
 .continue
 
-
 # user
-/learning
-/trash
-/backup
-/logs
-/db
 /tests
-/releases
-progress.txt
+/db
+/vault
 .gitlab-ci.yml
-CLAUDE.md
 
 # caches
 .pytest_cache/

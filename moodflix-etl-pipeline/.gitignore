@@ -8,16 +8,14 @@ dist/
 wheels/
 *.egg-info
 
-trash/
-backup/
 tests/
 logs/
 scripts/
 store/
 db/
+vault/
 
 **/.DS_Store
 Dockerfile
 .env*
-CLAUDE.md
 .pytest_cache/

@@ -30,15 +30,11 @@ class LLMService:
 
 	def __init__(self) -> None:
 		self.providers: List[BaseChatModel] = [
-			ChatOllama(
-				model=ollama_config.model_gemma3,
-				temperature=ollama_config.temperature,
-				base_url=ollama_config.base_url
-			),
-			ChatOllama(
-				model=ollama_config.model_gemma3,
-				temperature=ollama_config.temperature,
-				base_url=ollama_config.base_url
+			ChatGroq(
+				api_key=groq_config.api_key,
+				model=groq_config.model,
+				temperature=groq_config.temperature,
+				max_retries=groq_config.max_retries,
 			),
 			ChatMistralAI(
 				api_key=mistral_config.api_key,
@@ -52,11 +48,27 @@ class LLMService:
 				base_url=openrouter_config.base_url,
 				temperature=openrouter_config.temperature,
 			),
-			ChatGroq(
-				api_key=groq_config.api_key,
-				model=groq_config.model,
-				temperature=groq_config.temperature,
-				max_retries=groq_config.max_retries,
+			ChatOllama(
+				model=ollama_config.model_qwen25,
+				temperature=0,
+				base_url=ollama_config.base_url,
+				format="json",
+			),
+			ChatOllama(
+				model=ollama_config.model_phi3_mini,
+				temperature=0,
+				base_url=ollama_config.base_url,
+				format="json",
+			),
+			ChatOllama(
+				model=ollama_config.model_gemma2,
+				temperature=ollama_config.temperature,
+				base_url=ollama_config.base_url
+			),
+			ChatOllama(
+				model=ollama_config.model_gemma3,
+				temperature=ollama_config.temperature,
+				base_url=ollama_config.base_url
 			),
 		]
 
@@ -73,9 +85,13 @@ class LLMService:
 	        output_parser: BaseOutputParser[T]) -> T | None:
 		for provider in self.providers:
 			try:
+				model_name = getattr(provider, "model", getattr(provider, "model_name", "Unknown Model"))
+				provider_type = type(provider).__name__
+
 				chain = prompt_template | provider | output_parser
 				response = chain.invoke(input_vars)
-				print(f"\n{type(provider).__name__} LLM Response: {response}\n")
+
+        logger.info(f"[LLMService] Provider {type(provider).__name__} succeeded")
 				return response
 			except Exception as e:
 				logger.warning(f"[LLMService] Provider {type(provider).__name__} failed: {e}", exc_info=e)

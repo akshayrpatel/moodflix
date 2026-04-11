@@ -36,14 +36,5 @@ Thumbs.db
 application-local.yml
 application-local.properties
 
-# Claude
-CLAUDE.md
-
-# User scratch
-/learning
-/planning
-/trash
-/backup
-files.txt
-structure.txt
-HELP.md
+# User
+/vault

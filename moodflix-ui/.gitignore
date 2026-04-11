@@ -42,8 +42,5 @@ next-env.d.ts
 
 
 # user
-/learning
-/backup
-/trash
-CLAUDE.md
+/vault
 .gitlab-ci.yml

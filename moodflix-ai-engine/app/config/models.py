@@ -8,6 +8,8 @@ class QueryMLConfig(BaseModel):
 class OllamaConfig(BaseModel):
 	model_gemma2: str = settings.ollama_gemma2_model_name
 	model_gemma3: str = settings.ollama_gemma3_model_name
+	model_phi3_mini: str = settings.ollama_phi3_mini_model_name
+	model_qwen25: str = settings.ollama_qwen25_model_name
 	base_url: str = settings.ollama_base_url
 	temperature: float = 0.5
 	max_retries: int = 2
