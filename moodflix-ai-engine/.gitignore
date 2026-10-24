@@ -18,6 +18,7 @@ wheels/
 /tests
 /db
 /vault
+/benchmarks
 .gitlab-ci.yml
 
 # caches
