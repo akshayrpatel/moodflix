@@ -1,0 +1,58 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: moodflix-interactions
+
+  # --- 1. PostgreSQL Datasource (JPA) ---
+  datasource:
+    url: jdbc:postgresql://localhost:5432/moodflix_dev
+    username: postgres
+    password: akshay24
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate  # Safety: never auto-drop or auto-alter tables in production
+    open-in-view: false   # Disables blocking OSIV anti-pattern
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: false
+
+  # --- 2. Redis Configuration ---
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  # --- 3. Kafka Consumer Configuration ---
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: moodflix-interactions-group
+      auto-offset-reset: earliest  # Start from earliest unread message if offset is lost
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.moodflix.*" # Allow deserializing our event DTOs
+        spring.json.value.default.type: "com.moodflix.interactions.model.InteractionEvent"
+        spring.json.use.type.headers: false
+
+# --- 4. Actuator Metrics ---
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+
+# --- 5. Downstream AI Engine (ChromaDB Vector Retrieval) ---
+ai:
+  engine:
+    url: http://localhost:8001
+    timeout:
+      connect: 2000ms
+      read: 3000ms

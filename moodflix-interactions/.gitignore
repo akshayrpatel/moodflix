@@ -1,0 +1,30 @@
+# Maven Build Artifacts
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Keep Maven Wrapper JAR for portable builds (Mac Mini / CI)
+!.mvn/wrapper/maven-wrapper.jar
+
+# Help files
+HELP.md
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.settings/
+.project
+.classpath
+.factorypath
+.springBeans
+.sts4-cache
+
+# Runtime logs
+logs/
+*.log
+
+# Mac OS
+.DS_Store
