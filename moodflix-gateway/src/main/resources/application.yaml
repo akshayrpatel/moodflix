@@ -46,3 +46,12 @@ logging:
 # --- JWT ---
 jwt:
   secret: 'u&P9#zL2m!K5vR@8qXn*jW4b7Yf$6tS1'
+
+# --- Kafka Producer Configuration ---
+kafka:
+  bootstrap-servers: localhost:9092
+  producer:
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    properties:
+      spring.json.add.type.headers: false
